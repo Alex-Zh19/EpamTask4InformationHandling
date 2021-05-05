@@ -6,12 +6,12 @@ public class ParseParagraphToSentence implements Parser {
     private Parser parser = new ParseSentenceToWord();
 
     @Override
-    public void parse() {
+    public void parse(String str) {
         System.out.println(this.getClass());
-        nextChain();
+        nextChain( str);
     }
 
-    private void nextChain() {
-        parser.parse();
+    private void nextChain(String str) {
+        parser.parse( str);
     }
 }

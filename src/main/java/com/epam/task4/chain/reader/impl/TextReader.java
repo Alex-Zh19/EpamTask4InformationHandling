@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,7 +23,7 @@ public class TextReader implements CustomReader {
         checkPath(fileName);
         String text;
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            text = stream.map(Objects::toString).collect(Collectors.joining("\n"));
+            text=stream.map(Objects::toString).collect(Collectors.joining("\n"));
             return text;
         } catch (IOException exception) {
             throw new InformationHandlingException(exception);
