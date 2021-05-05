@@ -5,9 +5,17 @@ import com.epam.task4.composite.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextComposite implements Component {
+public class Composite implements Component {
     private List<Component> components = new ArrayList<>();
     private String componentType;
+
+    Composite(){
+
+    }
+
+    Composite(String componentType){
+        this.componentType=componentType;
+    }
 
     @Override
     public void setType(String type) {
