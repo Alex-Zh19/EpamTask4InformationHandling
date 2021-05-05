@@ -9,18 +9,15 @@ public class Composite implements Component {
     private List<Component> components = new ArrayList<>();
     private String componentType;
 
-    Composite(){
+    public Composite(){
 
     }
 
-    Composite(String componentType){
+    public Composite(String componentType){
         this.componentType=componentType;
     }
 
-    @Override
-    public void setType(String type) {
-        componentType=type;
-    }
+
 
     @Override
     public void operation() {

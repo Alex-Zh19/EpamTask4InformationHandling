@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class Main {
     public static void main(String[] args) {
-        String PATH_TO_FILE = "data/text.txt";
+       /* String PATH_TO_FILE = "data/text.txt";
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         URL pathToFileUrl = classLoader.getResource(PATH_TO_FILE);
         CustomReader reader = new TextReader();
@@ -22,7 +22,13 @@ public class Main {
             //System.out.println(r);
         } catch (InformationHandlingException e) {
 
-        }
+        }*/
 
+        String str="hello";
+        String[]strings=str.split("||");
+        System.out.println(strings.length);
+        for(String s:strings){
+            System.out.println(s);
+        }
     }
 }

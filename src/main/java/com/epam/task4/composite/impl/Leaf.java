@@ -3,16 +3,16 @@ package com.epam.task4.composite.impl;
 import com.epam.task4.composite.Component;
 
 public class Leaf implements Component {
-    private String componentType;
+    private final String componentType="symbol";
     private String symbol;
 
 
-    Leaf(){
+    public Leaf() {
 
     }
 
-    Leaf(String componentType){
-        this.componentType=componentType;
+    public Leaf(String symbol) {
+        this.symbol = symbol;
     }
 
     public String getSymbol() {
@@ -23,11 +23,6 @@ public class Leaf implements Component {
         this.symbol = symbol;
     }
 
-
-    @Override
-    public void setType(String type) {
-        componentType=type;
-    }
 
     @Override
     public void operation() {

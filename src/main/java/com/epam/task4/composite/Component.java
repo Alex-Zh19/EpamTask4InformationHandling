@@ -9,5 +9,4 @@ public interface Component {
 
     String getType();
 
-    void setType(String type);
 }
