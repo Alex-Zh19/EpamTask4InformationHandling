@@ -18,6 +18,7 @@ public class Main {
         URL pathToFileUrl = classLoader.getResource(PATH_TO_FILE);
         CustomReader reader = new TextReader();
         Component baseComposite=new Composite();
+        baseComposite.setType("base");
         try {
             String r = reader.read(new File(pathToFileUrl.getFile()).getAbsolutePath());
             Parser parser=new ParseTextToParagraph();

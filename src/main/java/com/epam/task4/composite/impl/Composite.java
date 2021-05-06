@@ -24,7 +24,10 @@ public class Composite implements Component {
 
     @Override
     public void operation() {
-        components.forEach(Component::operation);
+       for (Component component:components){
+           System.out.println(component.getType());
+           component.operation();
+       }
     }
 
     @Override
