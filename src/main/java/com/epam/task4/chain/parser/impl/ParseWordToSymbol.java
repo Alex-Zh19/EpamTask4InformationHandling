@@ -5,14 +5,13 @@ import com.epam.task4.composite.Component;
 import com.epam.task4.composite.impl.Composite;
 import com.epam.task4.composite.impl.Leaf;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParseWordToSymbol implements Parser {
     private final String SPLIT_WORD_TO_SYMBOL="||";
     @Override
-    public void parse(String str) {
+    public void parse(String str, Component sentenceComposite) {
         String[] strings = str.split(SPLIT_WORD_TO_SYMBOL);
         List<String> symbols = new ArrayList<>();
         for (String bufferString : strings) {
@@ -20,13 +19,14 @@ public class ParseWordToSymbol implements Parser {
                 symbols.add(bufferString);
             }
         }
-        
-        Composite composite=new Composite();
+        Component wordComposite = new Composite();
+        wordComposite.setType("word");
+        sentenceComposite.add(wordComposite);
         while (!symbols.isEmpty()) {
             System.out.println(this.getClass());
-            Component leaf=new Leaf(symbols.get(symbols.size()-1));
-            composite.add(leaf);
-            symbols.remove(symbols.size() - 1);
+            Component leaf=new Leaf(symbols.get(0));
+            wordComposite.add(leaf);
+            symbols.remove(0);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.epam.task4.chain.parser.impl;
 
 import com.epam.task4.chain.parser.Parser;
+import com.epam.task4.composite.Component;
 import com.epam.task4.composite.impl.Composite;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class ParseSentenceToWord implements Parser {
     private final String SPLIT_SENTENCE_TO_WORD="[\\W]";
 
     @Override
-    public void parse(String str) {
+    public void parse(String str, Component paragraphComposite) {
         String[] strings = str.split(SPLIT_SENTENCE_TO_WORD);
         List<String> words = new ArrayList<>();
         for (String bufferString : strings) {
@@ -19,16 +20,18 @@ public class ParseSentenceToWord implements Parser {
                 words.add(bufferString);
             }
         }
-
+        Component sentenceComposite = new Composite();
+        sentenceComposite.setType("sentence");
+        paragraphComposite.add(sentenceComposite);
         while (!words.isEmpty()) {
-            String word = words.get(words.size() - 1);
+            String word = words.get(0);
 
-            nextChain(word);
-            words.remove(words.size() - 1);
+            nextChain(word,sentenceComposite);
+            words.remove(0);
         }
     }
 
-    private void nextChain(String str) {
-        parser.parse(str);
+    private void nextChain(String str, Component component) {
+        parser.parse(str,component);
     }
 }

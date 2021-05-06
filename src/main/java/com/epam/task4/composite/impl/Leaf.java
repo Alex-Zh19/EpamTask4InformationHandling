@@ -3,7 +3,7 @@ package com.epam.task4.composite.impl;
 import com.epam.task4.composite.Component;
 
 public class Leaf implements Component {
-    private final String componentType="symbol";
+    private String componentType="symbol";
     private String symbol;
 
 
@@ -26,7 +26,7 @@ public class Leaf implements Component {
 
     @Override
     public void operation() {
-
+        System.out.println(symbol);
     }
 
     @Override
@@ -42,5 +42,10 @@ public class Leaf implements Component {
     @Override
     public String getType() {
         return componentType;
+    }
+
+    @Override
+    public  void setType(String type){
+
     }
 }

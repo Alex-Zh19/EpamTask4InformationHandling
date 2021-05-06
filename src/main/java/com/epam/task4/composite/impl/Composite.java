@@ -17,7 +17,10 @@ public class Composite implements Component {
         this.componentType=componentType;
     }
 
-
+    @Override
+    public void setType(String type){
+        componentType=type;
+    }
 
     @Override
     public void operation() {
@@ -26,12 +29,12 @@ public class Composite implements Component {
 
     @Override
     public boolean add(Component component) {
-        return component.add(component);
+        return components.add(component);
     }
 
     @Override
     public boolean remove(Component component) {
-        return component.remove(component);
+        return components.remove(component);
     }
 
     @Override
