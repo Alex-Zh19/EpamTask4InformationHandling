@@ -25,7 +25,7 @@ public class ParseTextToParagraph implements Parser {
         baseComponent.add(textComposite);
         while (!paragraphs.isEmpty()) {
             String paragraph = paragraphs.get(0);
-            System.out.println(this.getClass());
+            System.out.println(this.getClass());//delete
             nextChain(paragraph, textComposite);
             paragraphs.remove(0);
         }

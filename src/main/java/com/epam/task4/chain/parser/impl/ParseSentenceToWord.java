@@ -25,7 +25,7 @@ public class ParseSentenceToWord implements Parser {
         paragraphComposite.add(sentenceComposite);
         while (!words.isEmpty()) {
             String word = words.get(0);
-
+            System.out.println(this.getClass());//delete
             nextChain(word,sentenceComposite);
             words.remove(0);
         }

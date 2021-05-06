@@ -23,7 +23,7 @@ public class ParseWordToSymbol implements Parser {
         wordComposite.setType("word");
         sentenceComposite.add(wordComposite);
         while (!symbols.isEmpty()) {
-            System.out.println(this.getClass());
+            System.out.println(this.getClass());//delete
             Component leaf=new Leaf(symbols.get(0));
             wordComposite.add(leaf);
             symbols.remove(0);
