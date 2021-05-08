@@ -1,6 +1,6 @@
-package com.epam.task4.chain.reader.impl;
+package com.epam.task4.reader.impl;
 
-import com.epam.task4.chain.reader.CustomReader;
+import com.epam.task4.reader.CustomReader;
 import com.epam.task4.exception.InformationHandlingException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

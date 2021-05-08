@@ -1,4 +1,4 @@
-package com.epam.task4.chain.reader;
+package com.epam.task4.reader;
 
 import com.epam.task4.exception.InformationHandlingException;
 

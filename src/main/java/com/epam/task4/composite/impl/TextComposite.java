@@ -5,29 +5,33 @@ import com.epam.task4.composite.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Composite implements Component {
+public class TextComposite implements Component {
     private List<Component> components = new ArrayList<>();
     private String componentType;
 
-    public Composite(){
+    public TextComposite() {
 
     }
 
-    public Composite(String componentType){
-        this.componentType=componentType;
+    public TextComposite(String componentType) {
+        this.componentType = componentType;
     }
 
     @Override
-    public void setType(String type){
-        componentType=type;
+    public void setType(String type) {
+        componentType = type;
     }
 
     @Override
     public void operation() {
-       for (Component component:components){
-           System.out.println(component.getType());
-           component.operation();
-       }
+        for (Component component : components) {
+            if (component.getType().equals("word")) {
+                System.out.print(" ");
+            } else if (component.getType().equals("paragraph")) {
+                System.out.println("    ");
+            }
+            component.operation();
+        }
     }
 
     @Override

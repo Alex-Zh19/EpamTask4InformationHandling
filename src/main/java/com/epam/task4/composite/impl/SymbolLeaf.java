@@ -1,17 +1,17 @@
 package com.epam.task4.composite.impl;
 
 import com.epam.task4.composite.Component;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Leaf implements Component {
-    private String componentType="symbol";
+public class SymbolLeaf implements Component {
+    private String componentType = "symbol";
     private String symbol;
+    private static final Logger logger = LogManager.getLogger();
 
 
-    public Leaf() {
-
-    }
-
-    public Leaf(String symbol) {
+    public SymbolLeaf(String symbol) {
         this.symbol = symbol;
     }
 
@@ -19,14 +19,10 @@ public class Leaf implements Component {
         return symbol;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
 
     @Override
     public void operation() {
-        System.out.println(symbol);
+        System.out.print(symbol);
     }
 
     @Override
@@ -45,7 +41,7 @@ public class Leaf implements Component {
     }
 
     @Override
-    public  void setType(String type){
+    public void setType(String type) {
 
     }
 }

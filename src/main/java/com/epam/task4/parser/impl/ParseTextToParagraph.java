@@ -1,8 +1,8 @@
-package com.epam.task4.chain.parser.impl;
+package com.epam.task4.parser.impl;
 
-import com.epam.task4.chain.parser.Parser;
+import com.epam.task4.parser.Parser;
 import com.epam.task4.composite.Component;
-import com.epam.task4.composite.impl.Composite;
+import com.epam.task4.composite.impl.TextComposite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +20,18 @@ public class ParseTextToParagraph implements Parser {
                 paragraphs.add(bufferString);
             }
         }
-        Component textComposite = new Composite();
+        Component textComposite = new TextComposite();
         textComposite.setType("text");
         baseComponent.add(textComposite);
         while (!paragraphs.isEmpty()) {
-            String paragraph = paragraphs.get(0);
-            System.out.println(this.getClass());//delete
+            String paragraph = paragraphs.get(0).trim();
             nextChain(paragraph, textComposite);
             paragraphs.remove(0);
         }
     }
 
-    private void nextChain(String str, Component component) {
+    @Override
+    public void nextChain(String str, Component component) {
         parser.parse(str, component);
     }
 }
