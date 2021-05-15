@@ -18,11 +18,19 @@ public class ExpressionParser {
         StringBuilder polishNotation = new StringBuilder();
         Deque<String> stack = new ArrayDeque<>();
         String[] allSymbols = split(expression);
-
+        boolean mark = false;
         for (String symbol : allSymbols) {
             if (!symbol.isBlank()) {
                 if (isDigit(symbol)) {
-                    polishNotation.append(symbol).append(" ");
+                    polishNotation.append(symbol);
+                    polishNotation.append(" ");
+                    if (mark) {
+                        polishNotation.append(MathOperation.INVERTING);
+                        polishNotation.append(" ");
+                        mark = false;
+                    }
+                } else if (symbol.equals(MathOperation.INVERTING)) {
+                    mark = true;
                 } else if (isOperator(symbol)) {
                     stack.add(symbol);
                 } else if (symbol.equals(MathOperation.CLOSE_BRACKET)) {
