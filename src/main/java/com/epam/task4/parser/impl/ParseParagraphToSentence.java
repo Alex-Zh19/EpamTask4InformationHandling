@@ -1,5 +1,6 @@
 package com.epam.task4.parser.impl;
 
+import com.epam.task4.composite.impl.SymbolLeaf;
 import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
 import com.epam.task4.composite.Component;
@@ -31,6 +32,8 @@ public class ParseParagraphToSentence implements Parser {
         Component paragraphComposite = new TextComposite();
         paragraphComposite.setType("paragraph");
         textComposite.add(paragraphComposite);
+        SymbolLeaf symbolLeaf = new SymbolLeaf("    ");//should be here or not
+        paragraphComposite.add(symbolLeaf);//same question
         while (!sentences.isEmpty()) {
             String sentence = sentences.get(0).trim();
             nextChain(sentence, paragraphComposite);
@@ -39,7 +42,7 @@ public class ParseParagraphToSentence implements Parser {
     }
 
     @Override
-    public void nextChain(String str, Component component)throws InformationHandlingException {
+    public void nextChain(String str, Component component) throws InformationHandlingException {
         parser.parse(str, component);
     }
 }

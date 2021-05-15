@@ -6,6 +6,6 @@ import com.epam.task4.composite.interpreter.MathExpression;
 public class MathExpressionAnd implements MathExpression {
     @Override
     public void interpret(ExpressionContext context) {
-        context.push(context.pop()&context.pop());
+        context.push(context.pop() & context.pop());
     }
 }

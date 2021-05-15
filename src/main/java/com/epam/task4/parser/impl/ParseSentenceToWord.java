@@ -24,7 +24,6 @@ public class ParseSentenceToWord implements Parser {
         Component sentenceComposite = new TextComposite();
         sentenceComposite.setType("sentence");
         Character delimiterSymbol = str.charAt(str.length() - 1);
-        System.out.println(delimiterSymbol);
         DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.getDelimiter(delimiterSymbol.toString()));
         sentenceComposite.add(delimiterLeaf);
         paragraphComposite.add(sentenceComposite);
@@ -37,7 +36,7 @@ public class ParseSentenceToWord implements Parser {
                 String expressionPolishNotation = parser.parseStringExpressionToReversPolishNotation(bufferString);
                 PolishNotationParser polishNotationParser = new PolishNotationParser();
                 ExpressionInterpreter interpreter = new ExpressionInterpreter();
-                List<MathExpression>mathExpressions=polishNotationParser.parse(expressionPolishNotation);
+                List<MathExpression> mathExpressions = polishNotationParser.parse(expressionPolishNotation);
                 Integer expression = interpreter.interpretExpressionToInteger(mathExpressions);
                 words.add(expression.toString());
             } else if (!bufferString.isBlank()) {

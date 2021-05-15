@@ -32,7 +32,7 @@ public class ParseTextToParagraph implements Parser {
     }
 
     @Override
-    public void nextChain(String str, Component component)throws InformationHandlingException {
+    public void nextChain(String str, Component component) throws InformationHandlingException {
         parser.parse(str, component);
     }
 }

@@ -22,7 +22,7 @@ public class TextReader implements CustomReader {
         checkPath(fileName);
         String text;
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            text=stream.map(Objects::toString).collect(Collectors.joining("\n"));
+            text = stream.map(Objects::toString).collect(Collectors.joining("\n"));
             return text;
         } catch (IOException exception) {
             throw new InformationHandlingException(exception);

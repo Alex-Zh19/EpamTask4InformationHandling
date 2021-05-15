@@ -18,8 +18,8 @@ import java.util.List;
 
 
 public class Main {
-    public static void main(String[] args) throws InformationHandlingException{
-     /*  String PATH_TO_FILE = "data/text.txt";
+    public static void main(String[] args) throws InformationHandlingException {
+        String PATH_TO_FILE = "data/text.txt";
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         URL pathToFileUrl = classLoader.getResource(PATH_TO_FILE);
         CustomReader reader = new TextReader();
@@ -31,8 +31,8 @@ public class Main {
             parser.parse(r, baseComposite);
             baseComposite.operation();
         } catch (InformationHandlingException e) {
-        }*/
-        String expression="~6&9|(3&4)";
+        }
+       /* String expression="~6&9|(3&4)";
         ExpressionParser parser = new ExpressionParser();
         String expressionPolishNotation = parser.parseStringExpressionToReversPolishNotation(expression);
         System.out.println(expressionPolishNotation);
@@ -41,7 +41,7 @@ public class Main {
         List<MathExpression> mathExpressions=polishNotationParser.parse(expressionPolishNotation);
         Integer expressionInt = interpreter.interpretExpressionToInteger(mathExpressions);
         System.out.println(expressionInt);
-        System.out.println(~6&9|(3&4));
+        System.out.println(~6&9|(3&4));*/
         //System.out.println(~9);
 
     }

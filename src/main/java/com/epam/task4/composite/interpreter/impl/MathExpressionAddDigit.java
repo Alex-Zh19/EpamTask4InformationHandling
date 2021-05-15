@@ -6,8 +6,8 @@ import com.epam.task4.composite.interpreter.MathExpression;
 public class MathExpressionAddDigit implements MathExpression {
     private int number;
 
-    public MathExpressionAddDigit(int number){
-        this.number=number;
+    public MathExpressionAddDigit(int number) {
+        this.number = number;
     }
 
     @Override

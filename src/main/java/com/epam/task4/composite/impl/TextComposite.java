@@ -25,10 +25,8 @@ public class TextComposite implements Component {
     @Override
     public void operation() {
         for (Component component : components) {
-            if (component.getType().equals("word")) {
-                System.out.print(" ");
-            } else if (component.getType().equals("paragraph")) {
-                System.out.println("    ");
+            if (component.getType().equals("paragraph")) {
+                System.out.println();
             }
             component.operation();
         }
