@@ -2,6 +2,11 @@ package com.epam.task4.parser.impl;
 
 import com.epam.task4.composite.Delimiter;
 import com.epam.task4.composite.impl.DelimiterLeaf;
+import com.epam.task4.composite.interpreter.ExpressionInterpreter;
+import com.epam.task4.composite.interpreter.MathExpression;
+import com.epam.task4.composite.interpreter.parser.ExpressionParser;
+import com.epam.task4.composite.interpreter.parser.PolishNotationParser;
+import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
 import com.epam.task4.composite.Component;
 import com.epam.task4.composite.impl.TextComposite;
@@ -15,7 +20,7 @@ public class ParseSentenceToWord implements Parser {
     private final String SPLIT_SENTENCE_TO_WORD = "[\\s]";
 
     @Override
-    public void parse(String str, Component paragraphComposite) {
+    public void parse(String str, Component paragraphComposite) throws InformationHandlingException {
         Component sentenceComposite = new TextComposite();
         sentenceComposite.setType("sentence");
         Character delimiterSymbol = str.charAt(str.length() - 1);
@@ -28,7 +33,12 @@ public class ParseSentenceToWord implements Parser {
         List<String> words = new ArrayList<>();
         for (String bufferString : strings) {
             if (ExpressionValidator.validate(bufferString)) {
-                Integer expression = ExpressionValidator.countExpression(bufferString);
+                ExpressionParser parser = new ExpressionParser();
+                String expressionPolishNotation = parser.parseStringExpressionToReversPolishNotation(bufferString);
+                PolishNotationParser polishNotationParser = new PolishNotationParser();
+                ExpressionInterpreter interpreter = new ExpressionInterpreter();
+                List<MathExpression>mathExpressions=polishNotationParser.parse(expressionPolishNotation);
+                Integer expression = interpreter.interpretExpressionToInteger(mathExpressions);
                 words.add(expression.toString());
             } else if (!bufferString.isBlank()) {
                 words.add(bufferString);
@@ -42,7 +52,7 @@ public class ParseSentenceToWord implements Parser {
     }
 
     @Override
-    public void nextChain(String str, Component component) {
+    public void nextChain(String str, Component component) throws InformationHandlingException {
         parser.parse(str, component);
     }
 }

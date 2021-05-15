@@ -1,5 +1,6 @@
 package com.epam.task4.parser.impl;
 
+import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
 import com.epam.task4.composite.Component;
 import com.epam.task4.composite.impl.TextComposite;
@@ -12,7 +13,7 @@ public class ParseTextToParagraph implements Parser {
     private final String SPLIT_TEXT_TO_PARAGRAPH = "^[\\t]|[ ]{4}|[ ]{8}";
 
     @Override
-    public void parse(String str, Component baseComponent) {
+    public void parse(String str, Component baseComponent) throws InformationHandlingException {
         String[] strings = str.split(SPLIT_TEXT_TO_PARAGRAPH);
         List<String> paragraphs = new ArrayList<>();
         for (String bufferString : strings) {
@@ -31,7 +32,7 @@ public class ParseTextToParagraph implements Parser {
     }
 
     @Override
-    public void nextChain(String str, Component component) {
+    public void nextChain(String str, Component component)throws InformationHandlingException {
         parser.parse(str, component);
     }
 }

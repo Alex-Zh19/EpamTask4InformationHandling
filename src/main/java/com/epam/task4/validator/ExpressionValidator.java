@@ -13,9 +13,4 @@ public class ExpressionValidator {
        return false;
     }
 
-    public static Integer countExpression(String str){
-        int result=0;
-        System.out.print("( "+str+" )");
-        return result;
-    }
 }

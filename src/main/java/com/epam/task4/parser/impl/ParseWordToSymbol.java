@@ -2,6 +2,7 @@ package com.epam.task4.parser.impl;
 
 import com.epam.task4.composite.Delimiter;
 import com.epam.task4.composite.impl.DelimiterLeaf;
+import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
 import com.epam.task4.composite.Component;
 import com.epam.task4.composite.impl.TextComposite;
@@ -14,11 +15,11 @@ public class ParseWordToSymbol implements Parser {
     private final String SPLIT_WORD_TO_SYMBOL="||";
 
     @Override
-    public void nextChain(String str, Component component) {
+    public void nextChain(String str, Component component)throws InformationHandlingException {
     }
 
     @Override
-    public void parse(String str, Component sentenceComposite) {
+    public void parse(String str, Component sentenceComposite) throws InformationHandlingException {
         Component wordComposite = new TextComposite();
         wordComposite.setType("word");
         Character delimiterSymbol=str.charAt(str.length()-1);

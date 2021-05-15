@@ -1,5 +1,6 @@
 package com.epam.task4.parser.impl;
 
+import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
 import com.epam.task4.composite.Component;
 import com.epam.task4.composite.impl.TextComposite;
@@ -12,7 +13,7 @@ public class ParseParagraphToSentence implements Parser {
     private final String SPLIT_PARAGRAPH_TO_SENTENCE = "[.]{1,3}|[!]|[?]";
 
     @Override
-    public void parse(String str, Component textComposite) {
+    public void parse(String str, Component textComposite) throws InformationHandlingException {
         String[] strings = str.split(SPLIT_PARAGRAPH_TO_SENTENCE);
         int lengthToFindDelimiter = 0;
         Character delimiter;
@@ -38,7 +39,7 @@ public class ParseParagraphToSentence implements Parser {
     }
 
     @Override
-    public void nextChain(String str, Component component) {
+    public void nextChain(String str, Component component)throws InformationHandlingException {
         parser.parse(str, component);
     }
 }
