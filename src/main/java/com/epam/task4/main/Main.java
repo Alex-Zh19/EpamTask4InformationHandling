@@ -32,7 +32,8 @@ public class Main {
             baseComposite.operation();
         } catch (InformationHandlingException e) {
         }
-       /* String expression="~6&9|(3&4)";
+        /*
+        String expression="13<<2";
         ExpressionParser parser = new ExpressionParser();
         String expressionPolishNotation = parser.parseStringExpressionToReversPolishNotation(expression);
         System.out.println(expressionPolishNotation);
@@ -41,8 +42,8 @@ public class Main {
         List<MathExpression> mathExpressions=polishNotationParser.parse(expressionPolishNotation);
         Integer expressionInt = interpreter.interpretExpressionToInteger(mathExpressions);
         System.out.println(expressionInt);
-        System.out.println(~6&9|(3&4));*/
-        //System.out.println(~9);
+
+        System.out.println(3>>5);*/
 
     }
 }

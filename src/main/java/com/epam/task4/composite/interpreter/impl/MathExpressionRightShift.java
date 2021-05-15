@@ -6,6 +6,8 @@ import com.epam.task4.composite.interpreter.MathExpression;
 public class MathExpressionRightShift implements MathExpression {
     @Override
     public void interpret(ExpressionContext context) {
-        context.push(context.pop() >> context.pop());
+        Integer integer1=context.pop();
+        Integer integer2=context.pop();
+        context.push(integer2>>integer1);
     }
 }
