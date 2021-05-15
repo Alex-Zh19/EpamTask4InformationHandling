@@ -1,4 +1,4 @@
-package com.epam.task4.composite.interpreter.operation;
+package com.epam.task4.interpreter.operation;
 
 public class MathOperation {
     public static final String INVERTING = "~";

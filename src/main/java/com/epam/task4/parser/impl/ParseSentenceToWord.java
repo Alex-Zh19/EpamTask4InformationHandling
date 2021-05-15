@@ -2,10 +2,10 @@ package com.epam.task4.parser.impl;
 
 import com.epam.task4.composite.Delimiter;
 import com.epam.task4.composite.impl.DelimiterLeaf;
-import com.epam.task4.composite.interpreter.ExpressionInterpreter;
-import com.epam.task4.composite.interpreter.MathExpression;
-import com.epam.task4.composite.interpreter.parser.ExpressionParser;
-import com.epam.task4.composite.interpreter.parser.PolishNotationParser;
+import com.epam.task4.interpreter.ExpressionInterpreter;
+import com.epam.task4.interpreter.MathExpression;
+import com.epam.task4.interpreter.parser.ExpressionParser;
+import com.epam.task4.interpreter.parser.PolishNotationParser;
 import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
 import com.epam.task4.composite.Component;

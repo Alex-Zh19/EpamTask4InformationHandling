@@ -1,4 +1,4 @@
-package com.epam.task4.composite.interpreter;
+package com.epam.task4.interpreter;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -1,6 +1,6 @@
-package com.epam.task4.composite.interpreter.parser;
+package com.epam.task4.interpreter.parser;
 
-import com.epam.task4.composite.interpreter.operation.MathOperation;
+import com.epam.task4.interpreter.operation.MathOperation;
 import com.epam.task4.exception.InformationHandlingException;
 
 import java.util.ArrayDeque;

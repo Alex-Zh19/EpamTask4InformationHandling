@@ -1,8 +1,8 @@
-package com.epam.task4.composite.interpreter.parser;
+package com.epam.task4.interpreter.parser;
 
-import com.epam.task4.composite.interpreter.MathExpression;
-import com.epam.task4.composite.interpreter.operation.MathOperation;
-import com.epam.task4.composite.interpreter.impl.*;
+import com.epam.task4.interpreter.MathExpression;
+import com.epam.task4.interpreter.operation.MathOperation;
+import com.epam.task4.interpreter.impl.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,6 +1,6 @@
 package com.epam.task4.composite;
 
-import com.epam.task4.composite.interpreter.parser.ExpressionParser;
+import com.epam.task4.interpreter.parser.ExpressionParser;
 import com.epam.task4.exception.InformationHandlingException;
 import org.testng.annotations.Test;
 

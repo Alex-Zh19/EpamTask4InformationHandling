@@ -1,7 +1,7 @@
-package com.epam.task4.composite.interpreter.impl;
+package com.epam.task4.interpreter.impl;
 
-import com.epam.task4.composite.interpreter.ExpressionContext;
-import com.epam.task4.composite.interpreter.MathExpression;
+import com.epam.task4.interpreter.ExpressionContext;
+import com.epam.task4.interpreter.MathExpression;
 
 public class MathExpressionInverting implements MathExpression {
     @Override

@@ -2,10 +2,6 @@ package com.epam.task4.main;
 
 import com.epam.task4.composite.Component;
 import com.epam.task4.composite.impl.TextComposite;
-import com.epam.task4.composite.interpreter.ExpressionInterpreter;
-import com.epam.task4.composite.interpreter.MathExpression;
-import com.epam.task4.composite.interpreter.parser.ExpressionParser;
-import com.epam.task4.composite.interpreter.parser.PolishNotationParser;
 import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
 import com.epam.task4.parser.impl.ParseTextToParagraph;
@@ -14,7 +10,6 @@ import com.epam.task4.reader.impl.TextReader;
 
 import java.io.File;
 import java.net.URL;
-import java.util.List;
 
 
 public class Main {
