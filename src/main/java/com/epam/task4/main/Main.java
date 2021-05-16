@@ -2,6 +2,7 @@ package com.epam.task4.main;
 
 import com.epam.task4.composite.Component;
 import com.epam.task4.composite.ComponentType;
+import com.epam.task4.composite.Delimiter;
 import com.epam.task4.composite.impl.TextComposite;
 import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;

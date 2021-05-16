@@ -1,5 +1,7 @@
 package com.epam.task4.validator;
 
+import com.epam.task4.composite.Delimiter;
+
 public class ExpressionValidator {
 
 
@@ -11,6 +13,15 @@ public class ExpressionValidator {
             }
         }
         return false;
+    }
+
+    public static boolean isSentenceDelimiter(String symbol){
+        return symbol.equals(Delimiter.DOT.getValue()) || symbol.equals(Delimiter.EXCLAMATION.getValue()) ||
+                symbol.equals(Delimiter.QUESTION.getValue());
+    }
+
+    public static boolean isWordDelimiter(String symbol){
+        return symbol.equals(Delimiter.COMMA.getValue()) || symbol.equals(Delimiter.DASH.getValue());
     }
 
 }

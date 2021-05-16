@@ -43,10 +43,20 @@ public class ParseSentenceToWord implements Parser {
             }
         }
         while (!words.isEmpty()) {
-            String word = words.get(0).trim();
-            nextChain(word, sentenceComposite, nextParser);
+            StringBuilder word =new StringBuilder(words.get(0).trim());
+            Character delimiterSymbol = word.charAt(word.length() - 1);
+            if(ExpressionValidator.isSentenceDelimiter(delimiterSymbol.toString())){
+                word.deleteCharAt(word.length()-1);
+                DelimiterLeaf delimiterLeaf=new DelimiterLeaf(Delimiter.getDelimiter(delimiterSymbol.toString()));
+                nextChain(word.toString(), sentenceComposite, nextParser);
+                sentenceComposite.add(delimiterLeaf);
+            }else{
+                nextChain(word.toString(), sentenceComposite, nextParser);
+            }
             words.remove(0);
         }
     }
+
+
 
 }

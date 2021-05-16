@@ -1,6 +1,8 @@
 package com.epam.task4.parser.impl;
 
 import com.epam.task4.composite.ComponentType;
+import com.epam.task4.composite.Delimiter;
+import com.epam.task4.composite.impl.DelimiterLeaf;
 import com.epam.task4.composite.impl.SymbolLeaf;
 import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
@@ -36,7 +38,7 @@ public class ParseParagraphToSentence implements Parser {
         SymbolLeaf tab = new SymbolLeaf("    ");//should be here or not
         paragraphComposite.add(tab);//same question
         while (!sentences.isEmpty()) {
-            String sentence = sentences.get(0).trim();
+            String sentence =sentences.get(0).trim();
             nextChain(sentence, paragraphComposite, nextParser);
             sentences.remove(0);
         }
