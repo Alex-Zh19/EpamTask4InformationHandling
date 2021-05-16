@@ -7,6 +7,7 @@ public enum Delimiter {
     QUESTION("?"),
     DASH("-");
 
+
     private String value;
 
     Delimiter(String value) {
@@ -26,7 +27,7 @@ public enum Delimiter {
             return EXCLAMATION;
         } else if (value.equals(QUESTION.value)) {
             return QUESTION;
-        } else {
+        } else  {
             return DASH;
         }
     }

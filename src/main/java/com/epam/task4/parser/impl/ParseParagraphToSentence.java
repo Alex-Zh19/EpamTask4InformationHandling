@@ -1,8 +1,6 @@
 package com.epam.task4.parser.impl;
 
 import com.epam.task4.composite.ComponentType;
-import com.epam.task4.composite.Delimiter;
-import com.epam.task4.composite.impl.DelimiterLeaf;
 import com.epam.task4.composite.impl.SymbolLeaf;
 import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
@@ -14,7 +12,7 @@ import java.util.List;
 
 public class ParseParagraphToSentence implements Parser {
     private Parser nextParser = new ParseSentenceToWord();
-    private final String SPLIT_PARAGRAPH_TO_SENTENCE = "[.]{1,3}|[!]|[?]";
+    private final String SPLIT_PARAGRAPH_TO_SENTENCE = "[.]|[!]|[?]";
 
     @Override
     public void parse(String str, Component textComposite) throws InformationHandlingException {
@@ -35,8 +33,10 @@ public class ParseParagraphToSentence implements Parser {
         Component paragraphComposite = new TextComposite();
         paragraphComposite.setType(ComponentType.PARAGRAPH);
         textComposite.add(paragraphComposite);
+
         SymbolLeaf tab = new SymbolLeaf("    ");//should be here or not
         paragraphComposite.add(tab);//same question
+
         while (!sentences.isEmpty()) {
             String sentence =sentences.get(0).trim();
             nextChain(sentence, paragraphComposite, nextParser);
