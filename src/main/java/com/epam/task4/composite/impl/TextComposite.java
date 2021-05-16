@@ -1,24 +1,25 @@
 package com.epam.task4.composite.impl;
 
 import com.epam.task4.composite.Component;
+import com.epam.task4.composite.ComponentType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TextComposite implements Component {
     private List<Component> components = new ArrayList<>();
-    private String componentType;
+    private ComponentType componentType;
 
     public TextComposite() {
 
     }
 
-    public TextComposite(String componentType) {
+    public TextComposite(ComponentType componentType) {
         this.componentType = componentType;
     }
 
     @Override
-    public void setType(String type) {
+    public void setType(ComponentType type) {
         componentType = type;
     }
 
@@ -43,7 +44,7 @@ public class TextComposite implements Component {
     }
 
     @Override
-    public String getType() {
+    public ComponentType getType() {
         return componentType;
     }
 }

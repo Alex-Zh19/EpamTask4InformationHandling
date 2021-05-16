@@ -1,14 +1,14 @@
 package com.epam.task4.composite.impl;
 
 import com.epam.task4.composite.Component;
+import com.epam.task4.composite.ComponentType;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class SymbolLeaf implements Component {
-    private String componentType = "symbol";
+    private final ComponentType componentType = ComponentType.SYMBOL;
     private String symbol;
-    private static final Logger logger = LogManager.getLogger();
 
 
     public SymbolLeaf(String symbol) {
@@ -27,21 +27,21 @@ public class SymbolLeaf implements Component {
 
     @Override
     public boolean add(Component component) {
-        return false;
+       throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean remove(Component component) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public String getType() {
+    public ComponentType getType() {
         return componentType;
     }
 
     @Override
-    public void setType(String type) {
+    public void setType(ComponentType type) {
 
     }
 }

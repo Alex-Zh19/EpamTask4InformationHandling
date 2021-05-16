@@ -7,7 +7,7 @@ public interface Component {
 
     boolean remove(Component component);
 
-    String getType();
+    ComponentType getType();
 
-    void setType(String type);
+    void setType(ComponentType type);
 }

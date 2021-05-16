@@ -1,11 +1,12 @@
 package com.epam.task4.parser.impl;
 
+import com.epam.task4.composite.ComponentType;
 import com.epam.task4.composite.Delimiter;
 import com.epam.task4.composite.impl.DelimiterLeaf;
 import com.epam.task4.interpreter.ExpressionInterpreter;
 import com.epam.task4.interpreter.MathExpression;
-import com.epam.task4.interpreter.parser.ExpressionParser;
-import com.epam.task4.interpreter.parser.PolishNotationParser;
+import com.epam.task4.parser.ExpressionParser;
+import com.epam.task4.parser.PolishNotationParser;
 import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
 import com.epam.task4.composite.Component;
@@ -16,14 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseSentenceToWord implements Parser {
-    private Parser parser = new ParseWordToSymbol();
+    private Parser nextParser = new ParseWordToSymbol();
     private final String SPLIT_SENTENCE_TO_WORD = "[\\s]";
 
     @Override
     public void parse(String str, Component paragraphComposite) throws InformationHandlingException {
         Component sentenceComposite = new TextComposite();
-        sentenceComposite.setType("sentence");
+        sentenceComposite.setType(ComponentType.SENTENCE);
         Character delimiterSymbol = str.charAt(str.length() - 1);
+        System.out.println(delimiterSymbol);
         DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.getDelimiter(delimiterSymbol.toString()));
         sentenceComposite.add(delimiterLeaf);
         paragraphComposite.add(sentenceComposite);
@@ -45,13 +47,9 @@ public class ParseSentenceToWord implements Parser {
         }
         while (!words.isEmpty()) {
             String word = words.get(0).trim();
-            nextChain(word, sentenceComposite);
+            nextChain(word, sentenceComposite,nextParser);
             words.remove(0);
         }
     }
 
-    @Override
-    public void nextChain(String str, Component component) throws InformationHandlingException {
-        parser.parse(str, component);
-    }
 }

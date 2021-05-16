@@ -1,6 +1,7 @@
 package com.epam.task4.main;
 
 import com.epam.task4.composite.Component;
+import com.epam.task4.composite.ComponentType;
 import com.epam.task4.composite.impl.TextComposite;
 import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
@@ -19,7 +20,7 @@ public class Main {
         URL pathToFileUrl = classLoader.getResource(PATH_TO_FILE);
         CustomReader reader = new TextReader();
         Component baseComposite = new TextComposite();
-        baseComposite.setType("base");
+        baseComposite.setType(ComponentType.BASE);
         try {
             String r = reader.read(new File(pathToFileUrl.getFile()).getAbsolutePath());
             Parser parser = new ParseTextToParagraph();

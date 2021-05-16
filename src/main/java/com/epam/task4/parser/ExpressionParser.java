@@ -1,4 +1,4 @@
-package com.epam.task4.interpreter.parser;
+package com.epam.task4.parser;
 
 import com.epam.task4.interpreter.operation.MathOperation;
 import com.epam.task4.exception.InformationHandlingException;
@@ -18,19 +18,19 @@ public class ExpressionParser {
         StringBuilder polishNotation = new StringBuilder();
         Deque<String> stack = new ArrayDeque<>();
         String[] allSymbols = split(expression);
-        boolean mark = false;
+        boolean isInverting = false;
         for (String symbol : allSymbols) {
             if (!symbol.isBlank()) {
                 if (isDigit(symbol)) {
                     polishNotation.append(symbol);
                     polishNotation.append(" ");
-                    if (mark) {
+                    if (isInverting) {
                         polishNotation.append(MathOperation.INVERTING);
                         polishNotation.append(" ");
-                        mark = false;
+                        isInverting = false;
                     }
                 } else if (symbol.equals(MathOperation.INVERTING)) {
-                    mark = true;
+                    isInverting = true;
                 } else if (isOperator(symbol)) {
                     stack.add(symbol);
                 } else if (symbol.equals(MathOperation.CLOSE_BRACKET)) {
@@ -82,22 +82,20 @@ public class ExpressionParser {
     }
 
     private boolean isOperator(String symbol) {
-        if (symbol.equals(MathOperation.PLUS) || symbol.equals(MathOperation.MINUS) ||
+        return symbol.equals(MathOperation.PLUS) || symbol.equals(MathOperation.MINUS) ||
                 symbol.equals(MathOperation.MULTIPLICATION) || symbol.equals(MathOperation.DIVISION) ||
                 symbol.equals(MathOperation.OR) || symbol.equals(MathOperation.AND) || symbol.equals(MathOperation.XOR) ||
                 symbol.equals(MathOperation.LEFT_SHIFT) || symbol.equals(MathOperation.RIGHT_SHIFT) ||
-                symbol.equals(MathOperation.OPEN_BRACKET) || symbol.equals(MathOperation.INVERTING)) {
-            return true;
-        }
-        return false;
+                symbol.equals(MathOperation.OPEN_BRACKET) || symbol.equals(MathOperation.INVERTING);
+
+
     }
 
     private boolean isDigit(String symbol) {
         Character symb = symbol.charAt(0);
-        if (Character.isDigit(symb)) {
-            return true;
-        }
-        return false;
+        return Character.isDigit(symb);
+
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.epam.task4.interpreter.parser;
+package com.epam.task4.parser;
 
 import com.epam.task4.interpreter.MathExpression;
 import com.epam.task4.interpreter.operation.MathOperation;
@@ -9,15 +9,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PolishNotationParser {
-    private static final String SPLIT_EXPRESSION = "\s";
+    private static final String SPACE_SYMBOL_TO_SPLIT = "\s";
 
     public List<MathExpression> parse(String polishNotation) {
         return parseLogic(polishNotation);
     }
 
     private List<MathExpression> parseLogic(String polishNotation) {
-        ArrayList<MathExpression> expressions = new ArrayList<>();
-        Arrays.asList(polishNotation.split(SPLIT_EXPRESSION)).forEach(symbol -> {
+        List<MathExpression> expressions = new ArrayList<>();
+        Arrays.asList(polishNotation.split(SPACE_SYMBOL_TO_SPLIT)).forEach(symbol -> {
             if (!symbol.isBlank()) {
                 switch (symbol.trim()) {
                     case MathOperation.INVERTING:

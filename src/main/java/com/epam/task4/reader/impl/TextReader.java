@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TextReader implements CustomReader {
-    final static Logger logger = LogManager.getLogger();
+    private final static Logger logger = LogManager.getLogger();
 
     @Override
     public String read(String fileName) throws InformationHandlingException {
