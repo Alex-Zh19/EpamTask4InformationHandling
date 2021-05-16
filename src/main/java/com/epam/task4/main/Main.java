@@ -21,14 +21,10 @@ public class Main {
         CustomReader reader = new TextReader();
         Component baseComposite = new TextComposite();
         baseComposite.setType(ComponentType.BASE);
-        try {
-            String r = reader.read(new File(pathToFileUrl.getFile()).getAbsolutePath());
-            Parser parser = new ParseTextToParagraph();
-            parser.parse(r, baseComposite);
-            baseComposite.operation();
-        } catch (InformationHandlingException e) {
-            System.out.println("fuck");
-        }
+        String r = reader.read(new File(pathToFileUrl.getFile()).getAbsolutePath());
+        Parser parser = new ParseTextToParagraph();
+        parser.parse(r, baseComposite);
+        baseComposite.operation();
         /*
         String expression="13<<2";
         ExpressionParser parser = new ExpressionParser();
