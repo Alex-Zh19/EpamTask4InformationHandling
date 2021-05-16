@@ -26,7 +26,7 @@ public class TextComposite implements Component {
     @Override
     public void operation() {
         for (Component component : components) {
-            if (component.getType().equals("paragraph")) {
+            if (component.getType()==ComponentType.PARAGRAPH) {
                 System.out.println();
             }
             component.operation();

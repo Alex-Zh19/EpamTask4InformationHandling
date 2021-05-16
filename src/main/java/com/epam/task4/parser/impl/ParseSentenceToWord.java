@@ -24,10 +24,7 @@ public class ParseSentenceToWord implements Parser {
     public void parse(String str, Component paragraphComposite) throws InformationHandlingException {
         Component sentenceComposite = new TextComposite();
         sentenceComposite.setType(ComponentType.SENTENCE);
-        Character delimiterSymbol = str.charAt(str.length() - 1);
-        System.out.println(delimiterSymbol);
-        DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.getDelimiter(delimiterSymbol.toString()));
-        sentenceComposite.add(delimiterLeaf);
+
         paragraphComposite.add(sentenceComposite);
 
         String[] strings = str.split(SPLIT_SENTENCE_TO_WORD);

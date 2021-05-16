@@ -3,6 +3,7 @@ package com.epam.task4.composite.impl;
 import com.epam.task4.composite.Component;
 import com.epam.task4.composite.ComponentType;
 import com.epam.task4.composite.Delimiter;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,6 +14,7 @@ public class DelimiterLeaf implements Component {
 
     @Override
     public void operation() {
+       //logger.log(Level.INFO,delimiter);
         System.out.print(delimiter);
     }
 

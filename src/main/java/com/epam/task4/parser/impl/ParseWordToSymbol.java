@@ -24,22 +24,18 @@ public class ParseWordToSymbol implements Parser {
     public void parse(String str, Component sentenceComposite) throws InformationHandlingException {
         Component wordComposite = new TextComposite();
         wordComposite.setType(ComponentType.WORD);
+
         SymbolLeaf symbolLeaf = new SymbolLeaf(" ");// should be here or mot
         wordComposite.add(symbolLeaf);//same question
+
         Character delimiterSymbol = str.charAt(str.length() - 1);
-        if (delimiterSymbol.equals(Delimiter.COMMA)) {
-            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.COMMA);
-            wordComposite.add(delimiterLeaf);
-        } else if (delimiterSymbol.equals(Delimiter.DASH)) {
-            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.DASH);
-            wordComposite.add(delimiterLeaf);
-        }
+        delimiterLeafCreating(delimiterSymbol,wordComposite);
 
         sentenceComposite.add(wordComposite);
         String[] strings = str.split(SPLIT_WORD_TO_SYMBOL);
         List<String> symbols = new ArrayList<>();
         for (String bufferString : strings) {
-            if (!bufferString.isBlank() && !bufferString.equals(Delimiter.COMMA) && !bufferString.equals(Delimiter.DASH)) {
+            if (!bufferString.isBlank()&&!isDelimiter(bufferString)){
                 symbols.add(bufferString);
             }
         }
@@ -49,5 +45,33 @@ public class ParseWordToSymbol implements Parser {
             wordComposite.add(leaf);
             symbols.remove(0);
         }
+    }
+
+
+    private void delimiterLeafCreating(Character delimiterSymbol,Component wordComposite) throws InformationHandlingException{
+        if (delimiterSymbol.equals(Delimiter.COMMA)) {
+            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.COMMA);
+            wordComposite.add(delimiterLeaf);
+        } else if (delimiterSymbol.equals(Delimiter.DASH)) {
+            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.DASH);
+            wordComposite.add(delimiterLeaf);
+        }else if(delimiterSymbol.equals(Delimiter.DOT)){
+            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.DOT);
+            wordComposite.add(delimiterLeaf);
+        }else if(delimiterSymbol.equals(Delimiter.EXCLAMATION)) {
+            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.EXCLAMATION);
+            wordComposite.add(delimiterLeaf);
+        }else if(delimiterSymbol.equals(Delimiter.QUESTION)) {
+            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.QUESTION);
+            wordComposite.add(delimiterLeaf);
+        }else{
+            throw new InformationHandlingException("Symbol isn't a delimiter: "+delimiterSymbol);
+        }
+    }
+
+    private boolean isDelimiter(String symbol){
+        return symbol.equals(Delimiter.COMMA) && symbol.equals(Delimiter.DASH)&&
+                symbol.equals(Delimiter.DOT)&&symbol.equals(Delimiter.EXCLAMATION)&&
+                symbol.equals(Delimiter.QUESTION);
     }
 }
