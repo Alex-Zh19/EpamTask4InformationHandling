@@ -37,7 +37,7 @@ public class ParseParagraphToSentence implements Parser {
         paragraphComposite.add(tab);//same question
         while (!sentences.isEmpty()) {
             String sentence = sentences.get(0).trim();
-            nextChain(sentence, paragraphComposite,nextParser);
+            nextChain(sentence, paragraphComposite, nextParser);
             sentences.remove(0);
         }
     }

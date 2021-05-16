@@ -44,7 +44,7 @@ public class ParseSentenceToWord implements Parser {
         }
         while (!words.isEmpty()) {
             String word = words.get(0).trim();
-            nextChain(word, sentenceComposite,nextParser);
+            nextChain(word, sentenceComposite, nextParser);
             words.remove(0);
         }
     }

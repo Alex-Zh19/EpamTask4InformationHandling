@@ -27,6 +27,7 @@ public class Main {
             parser.parse(r, baseComposite);
             baseComposite.operation();
         } catch (InformationHandlingException e) {
+            System.out.println("fuck");
         }
         /*
         String expression="13<<2";

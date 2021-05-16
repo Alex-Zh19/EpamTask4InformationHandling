@@ -15,7 +15,7 @@ public class DelimiterLeaf implements Component {
     @Override
     public void operation() {
        //logger.log(Level.INFO,delimiter);
-        System.out.print(delimiter);
+       //System.out.print(delimiter);
     }
 
     public DelimiterLeaf(Delimiter delimiter) {
