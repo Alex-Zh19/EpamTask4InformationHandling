@@ -26,8 +26,8 @@ public class ParseWordToSymbol implements Parser {
         Component wordComposite = new TextComposite();
         wordComposite.setType(ComponentType.WORD);
 
-        SymbolLeaf symbolLeaf = new SymbolLeaf(" ");// should be here or mot
-        wordComposite.add(symbolLeaf);//same question
+        DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.SPACE,ComponentType.SPACE_TAB_DELIMITER);// should be here or mot
+        wordComposite.add(delimiterLeaf);//same question
 
         sentenceComposite.add(wordComposite);
 

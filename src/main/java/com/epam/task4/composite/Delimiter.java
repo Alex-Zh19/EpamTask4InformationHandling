@@ -5,7 +5,9 @@ public enum Delimiter {
     DOT("."),
     EXCLAMATION("!"),
     QUESTION("?"),
-    DASH("-");
+    DASH("-"),
+    SPACE(" "),
+    TAB("    ");
 
 
     private String value;
@@ -27,8 +29,12 @@ public enum Delimiter {
             return EXCLAMATION;
         } else if (value.equals(QUESTION.value)) {
             return QUESTION;
-        } else  {
+        } else if(value.equals(DASH.value)) {
             return DASH;
+        }else if(value.equals(SPACE.value)){
+            return SPACE;
+        }else{
+            return TAB;
         }
     }
 

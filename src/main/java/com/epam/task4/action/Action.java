@@ -6,6 +6,7 @@ import com.epam.task4.composite.ComponentType;
 import com.epam.task4.composite.impl.SymbolLeaf;
 import com.epam.task4.composite.impl.TextComposite;
 import com.epam.task4.exception.InformationHandlingException;
+import com.epam.task4.validator.ExpressionValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +27,14 @@ public class Action {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
         int maxLength = 0;
-        List<Component> resultSentences = new ArrayList<>();
+        final List<Component> resultSentences=new ArrayList<>();
         for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
             for (Component sentence : sentences) {
-                if (sentence.getType() != ComponentType.SYMBOL) {
+                if (sentence.getType() != ComponentType.SPACE_TAB_DELIMITER) {
                     List<Component> words = sentence.getComponents();
                     for (Component word : words) {
-                        System.out.println(word.getClass());
-                        if (word.getType() != ComponentType.SYMBOL && word.getType() != ComponentType.SENTENCE_DELIMITER) {//this
+                        if (!isDelimiterLeaf(word)) {
                             if (word.getSizeOfComponents() > maxLength) {
                                 maxLength = word.getSizeOfComponents();
                             }
@@ -43,19 +43,13 @@ public class Action {
                 }
             }
         }
-        System.out.println(maxLength);
+        final int max=maxLength;
         for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
             for (Component sentence : sentences) {
-                if (sentence.getType() != ComponentType.SYMBOL) {
-                    List<Component> words = sentence.getComponents();
-                    for (Component word : words) {
-                        if (word.getType() != ComponentType.SYMBOL && word.getType() != ComponentType.SENTENCE_DELIMITER) {//this
-                            if (word.getSizeOfComponents() == maxLength) {
-                                resultSentences.add(sentence);
-                            }
-                        }
-                    }
+                if(sentence.getType()!=ComponentType.SPACE_TAB_DELIMITER) {
+                    sentence.getComponents().stream().filter(word -> !isDelimiterLeaf(word)).
+                            map(word->(word.getSizeOfComponents()==max)?resultSentences.add(sentence):false);
                 }
             }
         }
@@ -69,8 +63,9 @@ public class Action {
 
         for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
-            paragraph.setComponents(sentences.stream().filter(sentence -> sentence.getSizeOfComponents() >= countOfWords).
-                    collect(Collectors.toList()));
+            paragraph.setComponents(sentences.stream().filter(sentence ->!isDelimiterLeaf(sentence)).
+                    filter(sentence->sentence.getSizeOfComponents() >= countOfWords+2).//one point for last delimiter and one
+                    collect(Collectors.toList()));//for space
         }
         component.setComponents(paragraphs);
     }
@@ -80,5 +75,9 @@ public class Action {
         if (!component.getClass().equals(TextComposite.class) || !component.getType().equals(ComponentType.TEXT)) {
             throw new InformationHandlingException("illegal component type");
         }
+    }
+
+    private boolean isDelimiterLeaf(Component component){
+       return component.getType()==ComponentType.SPACE_TAB_DELIMITER||component.getType()==ComponentType.SENTENCE_DELIMITER;
     }
 }

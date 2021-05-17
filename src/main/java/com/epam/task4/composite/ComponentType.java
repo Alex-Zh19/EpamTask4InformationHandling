@@ -8,5 +8,6 @@ public enum ComponentType {
     SYMBOL,
     WORD_DELIMITER,
     SENTENCE_DELIMITER,
+    SPACE_TAB_DELIMITER,
     BASE
 }
