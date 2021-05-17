@@ -6,6 +6,7 @@ public enum ComponentType {
     SENTENCE,
     WORD,
     SYMBOL,
-    DELIMITER,
+    WORD_DELIMITER,
+    SENTENCE_DELIMITER,
     BASE
 }

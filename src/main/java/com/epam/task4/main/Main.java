@@ -1,17 +1,22 @@
 package com.epam.task4.main;
 
+import com.epam.task4.action.Action;
 import com.epam.task4.composite.Component;
 import com.epam.task4.composite.ComponentType;
 import com.epam.task4.composite.Delimiter;
+import com.epam.task4.composite.impl.DelimiterLeaf;
+import com.epam.task4.composite.impl.SymbolLeaf;
 import com.epam.task4.composite.impl.TextComposite;
 import com.epam.task4.exception.InformationHandlingException;
 import com.epam.task4.parser.Parser;
 import com.epam.task4.parser.impl.ParseTextToParagraph;
 import com.epam.task4.reader.CustomReader;
 import com.epam.task4.reader.impl.TextReader;
+import com.epam.task4.validator.ExpressionValidator;
 
 import java.io.File;
 import java.net.URL;
+import java.util.List;
 
 
 public class Main {
@@ -26,6 +31,19 @@ public class Main {
         Parser parser = new ParseTextToParagraph();
         parser.parse(r, baseComposite);
         baseComposite.operation();
+
+        System.out.println();
+
+        List<Component>textComposite=baseComposite.getComponents();
+       // System.out.println(textComposite.size());
+
+        Component text=textComposite.get(0);
+
+        Action action=new Action();
+        action.deleteSentencesLessThan(text,20);
+        System.out.println(text.getSizeOfComponents());
+
+        text.operation();
         /*
         String expression="13<<2";
         ExpressionParser parser = new ExpressionParser();

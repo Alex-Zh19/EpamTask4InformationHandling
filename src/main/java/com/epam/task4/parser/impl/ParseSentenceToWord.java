@@ -47,7 +47,8 @@ public class ParseSentenceToWord implements Parser {
             Character delimiterSymbol = word.charAt(word.length() - 1);
             if(ExpressionValidator.isSentenceDelimiter(delimiterSymbol.toString())){
                 word.deleteCharAt(word.length()-1);
-                DelimiterLeaf delimiterLeaf=new DelimiterLeaf(Delimiter.getDelimiter(delimiterSymbol.toString()));
+                DelimiterLeaf delimiterLeaf=new DelimiterLeaf(Delimiter.getDelimiter(delimiterSymbol.toString()),
+                        ComponentType.SENTENCE_DELIMITER);
                 nextChain(word.toString(), sentenceComposite, nextParser);
                 sentenceComposite.add(delimiterLeaf);
             }else{

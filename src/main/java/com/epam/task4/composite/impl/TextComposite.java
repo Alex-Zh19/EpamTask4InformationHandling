@@ -10,6 +10,19 @@ public class TextComposite implements Component {
     private List<Component> components = new ArrayList<>();
     private ComponentType componentType;
 
+    @Override
+    public void setComponents(List<Component> components) {
+        if (components != null) {
+            this.components.removeAll(this.components);
+            this.components.addAll(components);
+        }
+    }
+
+    @Override
+    public int getSizeOfComponents() {
+        return components.size();
+    }
+
     public TextComposite() {
 
     }
@@ -26,11 +39,16 @@ public class TextComposite implements Component {
     @Override
     public void operation() {
         for (Component component : components) {
-            if (component.getType()==ComponentType.PARAGRAPH) {
+            if (component.getType() == ComponentType.PARAGRAPH) {
                 System.out.println();
             }
             component.operation();
         }
+    }
+
+    @Override
+    public List<Component> getComponents() {
+        return new ArrayList<>(components);
     }
 
     @Override

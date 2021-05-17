@@ -1,5 +1,7 @@
 package com.epam.task4.validator;
 
+import com.epam.task4.composite.Component;
+import com.epam.task4.composite.ComponentType;
 import com.epam.task4.composite.Delimiter;
 
 public class ExpressionValidator {

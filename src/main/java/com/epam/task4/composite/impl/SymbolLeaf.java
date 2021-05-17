@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public class SymbolLeaf implements Component {
     private final ComponentType componentType = ComponentType.SYMBOL;
     private String symbol;
@@ -31,6 +33,16 @@ public class SymbolLeaf implements Component {
     }
 
     @Override
+    public void setComponents(List<Component> components) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public int getSizeOfComponents() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public boolean remove(Component component) {
         throw new UnsupportedOperationException();
     }
@@ -38,6 +50,11 @@ public class SymbolLeaf implements Component {
     @Override
     public ComponentType getType() {
         return componentType;
+    }
+
+    @Override
+    public List<Component> getComponents() {
+        throw new UnsupportedOperationException();
     }
 
     @Override

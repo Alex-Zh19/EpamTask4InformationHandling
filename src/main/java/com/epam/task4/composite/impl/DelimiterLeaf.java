@@ -3,12 +3,13 @@ package com.epam.task4.composite.impl;
 import com.epam.task4.composite.Component;
 import com.epam.task4.composite.ComponentType;
 import com.epam.task4.composite.Delimiter;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public class DelimiterLeaf implements Component {
-    private ComponentType componentType = ComponentType.DELIMITER;
+    private ComponentType componentType;
     private Delimiter delimiter;
     private static final Logger logger = LogManager.getLogger();
 
@@ -18,18 +19,24 @@ public class DelimiterLeaf implements Component {
         System.out.print(delimiter);
     }
 
-    public DelimiterLeaf(Delimiter delimiter) {
+    @Override
+    public List<Component> getComponents() {
+        throw new UnsupportedOperationException();
+    }
+
+    public DelimiterLeaf(Delimiter delimiter, ComponentType  componentType) {
+        this.componentType=componentType;
         this.delimiter = delimiter;
     }
 
     @Override
     public boolean add(Component component) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean remove(Component component) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -38,7 +45,17 @@ public class DelimiterLeaf implements Component {
     }
 
     @Override
-    public void setType(ComponentType type) {
+    public void setComponents(List<Component> components) {
+        throw new UnsupportedOperationException();
+    }
 
+    @Override
+    public int getSizeOfComponents() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setType(ComponentType type) {
+        this.componentType=type;
     }
 }

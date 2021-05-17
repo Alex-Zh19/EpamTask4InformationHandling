@@ -57,10 +57,10 @@ public class ParseWordToSymbol implements Parser {
             return;
         }
         if (delimiterSymbol.equals(Delimiter.COMMA.getValue())) {
-            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.COMMA);
+            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.COMMA,ComponentType.WORD_DELIMITER);
             wordComposite.add(delimiterLeaf);
         } else if (delimiterSymbol.equals(Delimiter.DASH.getValue())) {
-            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.DASH);
+            DelimiterLeaf delimiterLeaf = new DelimiterLeaf(Delimiter.DASH,ComponentType.WORD_DELIMITER);
             wordComposite.add(delimiterLeaf);
         } else {
             throw new InformationHandlingException("Symbol isn't a delimiter: " + delimiterSymbol);
