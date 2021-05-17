@@ -40,10 +40,13 @@ public class Main {
         Component text=textComposite.get(0);
 
         Action action=new Action();
-        action.deleteSentencesLessThan(text,20);
-        System.out.println(text.getSizeOfComponents());
+        List<Component>sentences=action.findSentencesWithLongestWord(text);
+        for(Component sentence:sentences){
+            sentence.operation();
+            System.out.println();
+        }
 
-        text.operation();
+       // text.operation();
         /*
         String expression="13<<2";
         ExpressionParser parser = new ExpressionParser();

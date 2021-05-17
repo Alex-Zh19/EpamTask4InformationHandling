@@ -3,6 +3,7 @@ package com.epam.task4.action;
 import com.epam.task4.composite.Component;
 
 import com.epam.task4.composite.ComponentType;
+import com.epam.task4.composite.impl.SymbolLeaf;
 import com.epam.task4.composite.impl.TextComposite;
 import com.epam.task4.exception.InformationHandlingException;
 
@@ -21,7 +22,7 @@ public class Action {
 
     }
 
-    public List<Component> findSentencesWithLongestWord(Component component) throws InformationHandlingException {//do not work
+    public List<Component> findSentencesWithLongestWord(Component component) throws InformationHandlingException {//fix
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
         int maxLength = 0;
@@ -29,21 +30,31 @@ public class Action {
         for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
             for (Component sentence : sentences) {
-                List<Component> words = sentence.getComponents();
-                for (Component word : words) {
-                    if (word.getSizeOfComponents() > maxLength) {
-                        maxLength = word.getSizeOfComponents();
+                if (sentence.getType() != ComponentType.SYMBOL) {
+                    List<Component> words = sentence.getComponents();
+                    for (Component word : words) {
+                        System.out.println(word.getClass());
+                        if (word.getType() != ComponentType.SYMBOL && word.getType() != ComponentType.SENTENCE_DELIMITER) {//this
+                            if (word.getSizeOfComponents() > maxLength) {
+                                maxLength = word.getSizeOfComponents();
+                            }
+                        }
                     }
                 }
             }
         }
+        System.out.println(maxLength);
         for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
             for (Component sentence : sentences) {
-                List<Component> words = sentence.getComponents();
-                for (Component word : words) {
-                    if (word.getSizeOfComponents() == maxLength) {
-                        resultSentences.add(sentence);
+                if (sentence.getType() != ComponentType.SYMBOL) {
+                    List<Component> words = sentence.getComponents();
+                    for (Component word : words) {
+                        if (word.getType() != ComponentType.SYMBOL && word.getType() != ComponentType.SENTENCE_DELIMITER) {//this
+                            if (word.getSizeOfComponents() == maxLength) {
+                                resultSentences.add(sentence);
+                            }
+                        }
                     }
                 }
             }
@@ -57,11 +68,11 @@ public class Action {
         List<Component> paragraphs = component.getComponents();
 
         for (Component paragraph : paragraphs) {
-            List<Component>sentences=paragraph.getComponents();
+            List<Component> sentences = paragraph.getComponents();
             paragraph.setComponents(sentences.stream().filter(sentence -> sentence.getSizeOfComponents() >= countOfWords).
                     collect(Collectors.toList()));
         }
-       component.setComponents(paragraphs);
+        component.setComponents(paragraphs);
     }
 
 
