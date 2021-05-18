@@ -13,7 +13,7 @@ public class ExpressionParserTest {
         String expression="~6&9|(3&4)";
         ExpressionParser parser=new ExpressionParser();
         String polishNotationActual=parser.parseStringExpressionToReversPolishNotation(expression);
-        String polishNotationExpected="6934&|&~";
+        String polishNotationExpected="6 ~ 9 3 4 & | & ";
         assertEquals(polishNotationActual,polishNotationExpected);
     }
 
