@@ -7,7 +7,7 @@ public enum Delimiter {
     QUESTION("?"),
     DASH("-"),
     SPACE(" "),
-    TAB("    ");
+    TAB("\n\t");
 
 
     private String value;

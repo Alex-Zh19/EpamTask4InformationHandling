@@ -3,15 +3,18 @@ package com.epam.task4.action;
 import com.epam.task4.composite.Component;
 
 import com.epam.task4.composite.ComponentType;
+import com.epam.task4.composite.impl.SymbolLeaf;
 import com.epam.task4.composite.impl.TextComposite;
 import com.epam.task4.exception.InformationHandlingException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class Action {
+    private static final String REG_FOR_VOWELS = "[AaEeIiOoUuYy]";
+    private static final String REG_FOR_CONSONANTS="";
+
     public void sortByCountOfSentences(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
@@ -41,7 +44,8 @@ public class Action {
                 }
             }
         }
-       /* for (Component paragraph : paragraphs) {//working method
+
+      /* for (Component paragraph : paragraphs) {//working method
             List<Component> sentences = paragraph.getComponents();
             for (Component sentence : sentences) {
                 if (!isDelimiterLeaf(sentence)) {
@@ -56,23 +60,26 @@ public class Action {
                 }
             }
         }*/
-      /* final int max = maxLength;//do not work
+
+      /*final int max = maxLength;//do not work
         for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
             for (Component sentence : sentences) {
                 if (!isDelimiterLeaf(sentence)) {
-                    sentence.getComponents().stream().filter(word -> !isDelimiterLeaf(word)).
-                            map(word -> word.getSizeOfComponents() == max ? resultSentences.add(sentence) : false);
+                   resultSentences = sentence.getComponents().stream().filter(word -> !isDelimiterLeaf(word)).
+                            filter(word -> word.getSizeOfComponents() == max).
                 }
             }
         }*/
-        final int max = maxLength;
+       /* final int max = maxLength;
         for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
-            resultSentences = sentences.stream().filter(sentence -> !isDelimiterLeaf(sentence)).
+            Component buffer=new TextComposite();
+            sentences.stream().filter(sentence -> !isDelimiterLeaf(sentence)).
                     flatMap(sentence -> sentence.getComponents().stream()).filter(word -> !isDelimiterLeaf(word)).
-                    filter(word -> word.getSizeOfComponents() == max).collect(Collectors.toList());
-        }
+                    map().
+                    filter(word -> word.getSizeOfComponents() == max).forEach(resultSentences.add(buffer));
+        }*/
         return resultSentences;
     }
 
@@ -90,10 +97,54 @@ public class Action {
     }
 
 
-    public int findCount(Component component) throws InformationHandlingException{
+    public int findCountIdenticalWords(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
+        Map<String, Integer> wordCounter = new HashMap<>();
+        List<Component> paragraphs = component.getComponents();
+        for (Component paragraph : paragraphs) {
+            List<Component> sentences = paragraph.getComponents();
+            for (Component sentence : sentences) {
+                if (!isDelimiterLeaf(sentence)) {
+                    List<Component> words = sentence.getComponents();
+                    for (Component word : words) {
+                        if (!isDelimiterLeaf(word)) {
+                            StringBuilder oneWord = new StringBuilder();
+                            List<Component> symbols = word.getComponents();
+                            for (Component symbol : symbols) {
+                                if (!isDelimiterLeaf(symbol)) {
+                                    SymbolLeaf current = (SymbolLeaf) symbol;
+                                    oneWord.append(current.getSymbol());
+                                    wordCounter.merge(oneWord.toString(), 1, (prev, one) -> prev + 1);
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+        return Collections.max(wordCounter.values());
     }
 
+    public int countVowels(Component component) throws InformationHandlingException {
+        checkComponentIsText(component);
+        List<Component> paragraphs = component.getComponents();
+        return (int)countSymbols(paragraphs,REG_FOR_VOWELS);
+    }
+
+    public int countConsonants(Component component) throws InformationHandlingException{
+        checkComponentIsText(component);
+        List<Component> paragraphs = component.getComponents();
+        return (int)countSymbols(paragraphs,REG_FOR_CONSONANTS);
+    }
+
+    private long countSymbols(List<Component> paragraphs,String reg){
+        return  paragraphs.stream().filter(paragraph->!isDelimiterLeaf(paragraph)).
+                flatMap(paragraph->paragraph.getComponents().stream()).filter(sentence->!isDelimiterLeaf(sentence)).
+                flatMap(sentence->sentence.getComponents().stream()).filter(word->!isDelimiterLeaf(word)).
+                flatMap(word->word.getComponents().stream()).filter(symbol->symbol.toString().matches(reg))
+                .count();
+    }
 
     private void checkComponentIsText(Component component) throws InformationHandlingException {
         if (!component.getClass().equals(TextComposite.class) || !component.getType().equals(ComponentType.TEXT)) {

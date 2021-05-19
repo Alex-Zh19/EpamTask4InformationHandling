@@ -20,7 +20,15 @@ public class TextComposite implements Component {
 
     @Override
     public int getSizeOfComponents() {
-        return components.size();
+        int size = 0;
+        for (Component component : components) {
+            if (!component.getType().equals(ComponentType.SPACE_TAB_DELIMITER) &&
+                    !component.getType().equals(ComponentType.SENTENCE_DELIMITER) &&
+                    !component.getType().equals(ComponentType.WORD_DELIMITER)) {
+                ++size;
+            }
+        }
+        return size;
     }
 
     public TextComposite() {
@@ -36,15 +44,6 @@ public class TextComposite implements Component {
         componentType = type;
     }
 
-    @Override
-    public void operation() {
-        for (Component component : components) {
-            if (component.getType() == ComponentType.PARAGRAPH) {
-                System.out.println();
-            }
-            component.operation();
-        }
-    }
 
     @Override
     public List<Component> getComponents() {
@@ -64,5 +63,22 @@ public class TextComposite implements Component {
     @Override
     public ComponentType getType() {
         return componentType;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        if (componentType == ComponentType.PARAGRAPH) {
+            result.append("\n\t");
+        }
+        for (Component component : components) {
+            result.append(component.toString());
+        }
+        return result.toString();
+    }
+
+    @Override
+    public String getSymbol() {
+        throw new UnsupportedOperationException();
     }
 }

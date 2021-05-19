@@ -13,10 +13,10 @@ public class DelimiterLeaf implements Component {
     private Delimiter delimiter;
     private static final Logger logger = LogManager.getLogger();
 
+
     @Override
-    public void operation() {
-        //logger.log(Level.INFO,delimiter);
-        System.out.print(delimiter);
+    public String getSymbol() {
+        return delimiter.getValue();
     }
 
     @Override
@@ -27,6 +27,11 @@ public class DelimiterLeaf implements Component {
     public DelimiterLeaf(Delimiter delimiter, ComponentType  componentType) {
         this.componentType=componentType;
         this.delimiter = delimiter;
+    }
+
+    @Override
+    public String toString() {
+        return delimiter.getValue();
     }
 
     @Override

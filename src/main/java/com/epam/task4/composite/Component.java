@@ -3,7 +3,6 @@ package com.epam.task4.composite;
 import java.util.List;
 
 public interface Component {
-    void operation();
 
     boolean add(Component component);
 
@@ -18,4 +17,6 @@ public interface Component {
     int getSizeOfComponents();
 
     void setComponents(List<Component> components);
+
+    String getSymbol();
 }

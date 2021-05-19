@@ -17,15 +17,13 @@ public class SymbolLeaf implements Component {
         this.symbol = symbol;
     }
 
+    @Override
     public String getSymbol() {
         return symbol;
     }
 
 
-    @Override
-    public void operation() {
-        System.out.print(symbol);
-    }
+
 
     @Override
     public boolean add(Component component) {
@@ -60,5 +58,10 @@ public class SymbolLeaf implements Component {
     @Override
     public void setType(ComponentType type) {
 
+    }
+
+    @Override
+    public String toString() {
+        return symbol;
     }
 }
