@@ -26,26 +26,16 @@ public class Main {
         String r = reader.read(new File(pathToFileUrl.getFile()).getAbsolutePath());
         Parser parser = new ParseTextToParagraph();
         parser.parse(r, baseComposite);
-        System.out.println(baseComposite);
-
-        System.out.println();
-
         List<Component> textComposite = baseComposite.getComponents();
-        // System.out.println(textComposite.size());
-
         Component text = textComposite.get(0);
-
-
-        Action action = new Action();
-
-        //action.deleteSentencesLessThan(text,18);
-       List<Component> sentences = action.findSentencesWithLongestWord(text);
-
+        System.out.println(text);
+        /*Action action = new Action();
+        List<Component> sentences = action.findSentencesWithLongestWord(text);
         for (Component sentence : sentences) {
             System.out.println(sentence);
-        }
-         //int vowels= action.countConsonants(text);
-       // System.out.println(vowels);
+        }*/
+        //int vowels= action.countConsonants(text);
+        // System.out.println(vowels);
         /*
 
         ExpressionParser parser = new ExpressionParser();

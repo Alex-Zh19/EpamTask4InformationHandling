@@ -68,11 +68,8 @@ public class TextComposite implements Component {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        if (componentType == ComponentType.PARAGRAPH) {
-            result.append("\n\t");
-        }
         for (Component component : components) {
-            result.append(component.toString());
+            result.append(component);
         }
         return result.toString();
     }

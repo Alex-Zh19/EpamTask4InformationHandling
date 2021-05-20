@@ -15,16 +15,17 @@ public class Action {
     private static final String REG_FOR_VOWELS = "[AaEeIiOoUuYy]";
     private static final String REG_FOR_CONSONANTS = "[[^AEIOUaeiou]&&a-zA-Z]";
 
-    public void sortByCountOfSentences(Component component) throws InformationHandlingException {
+    public Component sortByCountOfSentences(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
+        Component newText=new TextComposite();
         List<Component> paragraphs = component.getComponents();
-
-        component.setComponents(paragraphs.stream().sorted((o1, o2) -> o2.getSizeOfComponents() - o1.getSizeOfComponents()).
+        newText.setComponents(paragraphs.stream().sorted((o1, o2) -> o2.getSizeOfComponents() - o1.getSizeOfComponents()).
                 collect(Collectors.toList()));
+        return newText;
 
     }
 
-    public List<Component> findSentencesWithLongestWord(Component component) throws InformationHandlingException {//fix
+    public List<Component> findSentencesWithLongestWord(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
         int maxLength = 0;
@@ -58,17 +59,18 @@ public class Action {
         return resultSentences;
     }
 
-    public void deleteSentencesLessThan(Component component, int countOfWords) throws InformationHandlingException {
+    public Component deleteSentencesLessThan(Component component, int countOfWords) throws InformationHandlingException {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
-
+        Component newText = new TextComposite();
         for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
             paragraph.setComponents(sentences.stream().filter(sentence -> !isDelimiterLeaf(sentence)).
-                    filter(sentence -> sentence.getSizeOfComponents() >= countOfWords + 2).//one point for last delimiter and one
-                    collect(Collectors.toList()));//for space
+                    filter(sentence -> sentence.getSizeOfComponents() >= countOfWords).
+                    collect(Collectors.toList()));
         }
-        component.setComponents(paragraphs);
+        newText.setComponents(paragraphs);
+        return newText;
     }
 
 
