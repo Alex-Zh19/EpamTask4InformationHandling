@@ -39,13 +39,13 @@ public class Main {
         Action action = new Action();
 
         //action.deleteSentencesLessThan(text,18);
-        List<Component> sentences = action.findSentencesWithLongestWord(text);
+       /* List<Component> sentences = action.findSentencesWithLongestWord(text);
         System.out.println(sentences.size());
         for (Component sentence : sentences) {
             System.out.println(sentence);
-        }
-        // int vowels= action.countVowels(text);
-        //System.out.println(vowels);
+        }*/
+         int vowels= action.countConsonants(text);
+        System.out.println(vowels);
         /*
 
         ExpressionParser parser = new ExpressionParser();

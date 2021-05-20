@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Action {
     private static final String REG_FOR_VOWELS = "[AaEeIiOoUuYy]";
-    private static final String REG_FOR_CONSONANTS="";
+    private static final String REG_FOR_CONSONANTS="[[^AEIOUaeiou]&&a-zA-Z]";
 
     public void sortByCountOfSentences(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
