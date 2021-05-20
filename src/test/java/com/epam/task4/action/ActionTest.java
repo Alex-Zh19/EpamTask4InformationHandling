@@ -8,9 +8,7 @@ import com.epam.task4.parser.Parser;
 import com.epam.task4.parser.impl.ParseTextToParagraph;
 import com.epam.task4.reader.CustomReader;
 import com.epam.task4.reader.impl.TextReader;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.net.URL;
@@ -21,7 +19,7 @@ import static org.testng.Assert.*;
 public class ActionTest {
     private Component text;
 
-    @BeforeTest
+    @BeforeMethod
     public void initialization() throws InformationHandlingException {
         String PATH_TO_FILE = "dataTest/textTest.txt";
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
@@ -35,7 +33,12 @@ public class ActionTest {
         List<Component> textComposite = baseComposite.getComponents();
         text = textComposite.get(0);
     }
-    
+
+    @AfterMethod
+    public void releaseInfo(){
+        text=null;
+    }
+
     @Test
     public void testSortByCountOfSentences() throws InformationHandlingException {
         Action action = new Action();
