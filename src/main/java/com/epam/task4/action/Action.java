@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Action {
     private static final String REG_FOR_VOWELS = "[AaEeIiOoUuYy]";
-    private static final String REG_FOR_CONSONANTS="[[^AEIOUaeiou]&&a-zA-Z]";
+    private static final String REG_FOR_CONSONANTS = "[[^AEIOUaeiou]&&a-zA-Z]";
 
     public void sortByCountOfSentences(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
@@ -28,7 +28,7 @@ public class Action {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
         int maxLength = 0;
-        List<Component> resultSentences = new ArrayList<>();
+        final List<Component> resultSentences = new ArrayList<>();
         for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
             for (Component sentence : sentences) {
@@ -44,43 +44,17 @@ public class Action {
                 }
             }
         }
-
-       for (Component paragraph : paragraphs) {//working method
+        final int max = maxLength;
+        for (Component paragraph : paragraphs) {
             List<Component> sentences = paragraph.getComponents();
             for (Component sentence : sentences) {
                 if (!isDelimiterLeaf(sentence)) {
-                    List<Component> words = sentence.getComponents();
-                    for (Component word : words) {
-                        if (!isDelimiterLeaf(word)) {
-                            if (word.getSizeOfComponents() == maxLength) {
-                                resultSentences.add(sentence);
-                                break;
-                            }
-                        }
-                    }
+                    sentence.getComponents().stream().filter(word -> !isDelimiterLeaf(word)).
+                            filter(word -> word.getSizeOfComponents() == max).
+                            map(sentence1 -> resultSentences.add(sentence)).collect(Collectors.toList());
                 }
             }
         }
-
-      /*final int max = maxLength;//do not work
-        for (Component paragraph : paragraphs) {
-            List<Component> sentences = paragraph.getComponents();
-            for (Component sentence : sentences) {
-                if (!isDelimiterLeaf(sentence)) {
-                   resultSentences = sentence.getComponents().stream().filter(word -> !isDelimiterLeaf(word)).
-                            filter(word -> word.getSizeOfComponents() == max).
-                }
-            }
-        }*/
-       /* final int max = maxLength;
-        for (Component paragraph : paragraphs) {
-            List<Component> sentences = paragraph.getComponents();
-            Component buffer=new TextComposite();
-            sentences.stream().filter(sentence -> !isDelimiterLeaf(sentence)).
-                    flatMap(sentence -> sentence.getComponents().stream()).filter(word -> !isDelimiterLeaf(word)).
-                    map().
-                    filter(word -> word.getSizeOfComponents() == max).forEach(resultSentences.add(buffer));
-        }*/
         return resultSentences;
     }
 
@@ -130,20 +104,20 @@ public class Action {
     public int countVowels(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
-        return (int)countSymbols(paragraphs,REG_FOR_VOWELS);
+        return (int) countSymbols(paragraphs, REG_FOR_VOWELS);
     }
 
-    public int countConsonants(Component component) throws InformationHandlingException{
+    public int countConsonants(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
-        return (int)countSymbols(paragraphs,REG_FOR_CONSONANTS);
+        return (int) countSymbols(paragraphs, REG_FOR_CONSONANTS);
     }
 
-    private long countSymbols(List<Component> paragraphs,String reg){
-        return  paragraphs.stream().filter(paragraph->!isDelimiterLeaf(paragraph)).
-                flatMap(paragraph->paragraph.getComponents().stream()).filter(sentence->!isDelimiterLeaf(sentence)).
-                flatMap(sentence->sentence.getComponents().stream()).filter(word->!isDelimiterLeaf(word)).
-                flatMap(word->word.getComponents().stream()).filter(symbol->symbol.toString().matches(reg))
+    private long countSymbols(List<Component> paragraphs, String reg) {
+        return paragraphs.stream().filter(paragraph -> !isDelimiterLeaf(paragraph)).
+                flatMap(paragraph -> paragraph.getComponents().stream()).filter(sentence -> !isDelimiterLeaf(sentence)).
+                flatMap(sentence -> sentence.getComponents().stream()).filter(word -> !isDelimiterLeaf(word)).
+                flatMap(word -> word.getComponents().stream()).filter(symbol -> symbol.toString().matches(reg))
                 .count();
     }
 
