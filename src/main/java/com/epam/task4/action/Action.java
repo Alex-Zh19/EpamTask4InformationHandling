@@ -45,7 +45,7 @@ public class Action {
             }
         }
 
-      /* for (Component paragraph : paragraphs) {//working method
+       for (Component paragraph : paragraphs) {//working method
             List<Component> sentences = paragraph.getComponents();
             for (Component sentence : sentences) {
                 if (!isDelimiterLeaf(sentence)) {
@@ -54,12 +54,13 @@ public class Action {
                         if (!isDelimiterLeaf(word)) {
                             if (word.getSizeOfComponents() == maxLength) {
                                 resultSentences.add(sentence);
+                                break;
                             }
                         }
                     }
                 }
             }
-        }*/
+        }
 
       /*final int max = maxLength;//do not work
         for (Component paragraph : paragraphs) {
