@@ -35,12 +35,7 @@ public class ActionTest {
         List<Component> textComposite = baseComposite.getComponents();
         text = textComposite.get(0);
     }
-
-    @AfterTest
-    public void releaseInfo(){
-        text=null;
-    }
-
+    
     @Test
     public void testSortByCountOfSentences() throws InformationHandlingException {
         Action action = new Action();
