@@ -1,5 +1,6 @@
-package com.epam.task4.action;
+package com.epam.task4.action.impl;
 
+import com.epam.task4.action.CompositeAction;
 import com.epam.task4.composite.Component;
 
 import com.epam.task4.composite.ComponentType;
@@ -11,13 +12,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class Action {
+public class CompositeActionImpl implements CompositeAction {
     private static final String REG_FOR_VOWELS = "[AaEeIiOoUuYy]";
     private static final String REG_FOR_CONSONANTS = "[[^AEIOUaeiou]&&a-zA-Z]";
 
+    @Override
     public Component sortByCountOfSentences(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
-        Component newText=new TextComposite();
+        Component newText = new TextComposite();
         List<Component> paragraphs = component.getComponents();
         newText.setComponents(paragraphs.stream().sorted((o1, o2) -> o2.getSizeOfComponents() - o1.getSizeOfComponents()).
                 collect(Collectors.toList()));
@@ -25,6 +27,7 @@ public class Action {
 
     }
 
+    @Override
     public List<Component> findSentencesWithLongestWord(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
@@ -59,6 +62,7 @@ public class Action {
         return resultSentences;
     }
 
+    @Override
     public Component deleteSentencesLessThan(Component component, int countOfWords) throws InformationHandlingException {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
@@ -73,7 +77,7 @@ public class Action {
         return newText;
     }
 
-
+    @Override
     public int findCountIdenticalWords(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
         Map<String, Integer> wordCounter = new HashMap<>();
@@ -103,12 +107,14 @@ public class Action {
         return Collections.max(wordCounter.values());
     }
 
+    @Override
     public int countVowels(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
         return (int) countSymbols(paragraphs, REG_FOR_VOWELS);
     }
 
+    @Override
     public int countConsonants(Component component) throws InformationHandlingException {
         checkComponentIsText(component);
         List<Component> paragraphs = component.getComponents();
